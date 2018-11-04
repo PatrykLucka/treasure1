@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Lato', "Helvetica Neue", sans-serif; }
+h1, h2, h3, h4, h5, h6, span, p, strong {
+    font-family: 'Lato' /*Replace with your custom font*/, sans-serif !important; 
+    /*Add the !important to overwrite all elements*/
+  }
+
+.text-gray { color: #7b7f8b; }
+.red { color: #E44D0B !important; }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #f78e44 !important;
+}

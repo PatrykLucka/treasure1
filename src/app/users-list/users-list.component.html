@@ -1,0 +1,132 @@
+<div class="users-list" (click)="unselect()">
+    <div class="back">
+        <button mat-button routerLink="/">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+            Back
+        </button>
+    </div>
+    <div class="account">
+        <!-- <mat-icon>account_circle</mat-icon> -->
+        <img src="../../assets/consensys-logo.png" class="consensys-logo" alt="">
+        <div>
+            <h3>Consensys</h3>
+            <p class="text-gray">Balance: &nbsp;
+                <strong>∞ Ξ</strong>
+            </p>
+        </div>
+    </div>
+    <div style="width: 66%; position: relative; left: 120px; padding-top: 8vh; max-width: 800px;">
+        <h1 style="margin-bottom: 5vh; display: flex;">Buyers
+            <button mat-button style="margin-left: auto; color: #166BDF" (click)="add($event, true)">
+                <mat-icon style="top: -2px; position: relative;">add</mat-icon>
+                Add new wallet
+            </button>
+            <button mat-button style="margin-left: 10px; color: #166BDF" (click)="add($event)">
+                <mat-icon style="top: -2px; position: relative;">add</mat-icon>
+                Add new emplyee
+            </button>
+        </h1>
+        <mat-list>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Software wallet &nbsp; &nbsp;<strong>{{walletBalance}}</strong> &nbsp; Ξ
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div style="margin-left: 60px;" *ngIf="(users$ | async) && (users$ | async).length > 0">
+                        <p style="display: inline-block; width: 40%; color: #166BDF;">Name</p>
+                        <p style="display: inline-block; color: #166BDF;">Spent</p>
+                        <p style="display: inline-block; color: #166BDF; margin-left: 170px;">Access limit time</p>
+                    </div>
+                    <p *ngIf="!(users$ | async) || (users$ | async).length === 0" style="text-align: center; color: gray;"> Nothing here yet.</p>
+                    <mat-list-item *ngFor="let user of (users$ | async)" [class.selected]="user.selected" (click)="select($event, user)">
+                        <mat-icon mat-list-icon class="avatar">account_circle</mat-icon>
+                        <div mat-line class="user-details">
+                            <h4>{{user.name}}</h4>
+                            <p style="max-width: 100px">{{user.spent ? user.spent : 0}} / {{user.limit ? user.limit : '∞'}} Ξ</p>
+                            <p style="width: 50px"><span style="position: relative; top: 2px; margin-right: 5px;">∞</span> days</p>
+                            <button *ngIf="user.limit" mat-icon-button (click)="delete(user)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button *ngIf="!user.limit" mat-icon-button disabled style="visibility: hidden">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </mat-list-item>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Hardware wallet &nbsp; &nbsp;<strong>0</strong> &nbsp; Ξ
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p style="text-align: center; color: gray;"> Nothing here yet.</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-list>
+    </div>
+    <div class="add-new" (click)="preventUnselect($event)" *ngIf="selected" style="background: rgba(0, 0, 255, 0.03); height: 100vh;width: 30%; padding: 24px; padding-top: 15vh; position: absolute; right: 0;">
+        <h1 *ngIf="!addWallet"> {{new ? 'Add' : 'Edit'}} buyer</h1>
+        <h1 *ngIf="addWallet"> Add wallet</h1>
+        <mat-card *ngIf="!addWallet">
+            <form #f="ngForm" (submit)="onSubmit(f)" novalidate>
+                <mat-form-field *ngIf="new">
+                    <mat-label>Email</mat-label>
+                    <input matInput name="email" type="email" [(ngModel)]="email">
+                </mat-form-field>
+                <mat-form-field *ngIf="!new">
+                    <mat-label>Name</mat-label>
+                    <input matInput name="name" [(ngModel)]="name">
+                </mat-form-field>
+                <div class="spending-limit">
+                    <mat-form-field style="width: 80%;">
+                        <mat-label>Spending limit</mat-label>
+                        <input matInput name="limit" [(ngModel)]="limit">
+                    </mat-form-field>
+                    <p style="display: inline-block; margin-left: 15px;">Ξ</p>
+                </div>
+                <div class="spending-limit">
+                    <mat-form-field style="width: 80%;">
+                        <mat-label>Access time limit</mat-label>
+                        <input matInput name="access-limit" [(ngModel)]="accessLimit" disabled>
+                        <mat-hint>Not implemented</mat-hint>
+                    </mat-form-field>
+                    <p style="display: inline-block; margin-left: 15px;">days</p>
+                </div>
+                <mat-form-field style="margin-top: 20px;">
+                    <mat-label>Wallet type</mat-label>
+                    <select matNativeControl disabled>
+                        <option>Software</option>
+                    </select>
+                    <mat-hint>Not implemented</mat-hint>
+                </mat-form-field>
+                <!-- <button mat-button color="primary" (click)="addWallet = true">+ Add wallet</button> -->
+                <button mat-raised-button color="primary" type="submit">{{ new ? 'Add' : 'Save'}}</button>
+                <br>
+                <a *ngIf="newGuid" routerLink="/new-buyer/{{newGuid}}">https://localhost:4200/new-buyer/{{newGuid}}</a>
+            </form>
+        </mat-card>
+
+        <mat-card *ngIf="addWallet">
+            <form #f="ngForm" novalidate>
+                <mat-form-field>
+                    <mat-label>Wallet name</mat-label>
+                    <input matInput name="walletName" [(ngModel)]="walletName">
+                </mat-form-field>
+                <div class="spending-limit">
+                    <mat-form-field style="width: 80%;">
+                        <mat-label>Spending limit</mat-label>
+                        <input matInput name="walletLimit" [(ngModel)]="walletLimit">
+                    </mat-form-field>
+                    <p style="display: inline-block; margin-left: 15px;">Ξ</p>
+                </div>
+                <button mat-raised-button color="primary" type="submit">{{ new ? 'Add' : 'Save'}}</button>
+                <br>
+                <a *ngIf="newGuid" routerLink="/new-buyer/{{newGuid}}">https://localhost:4200/new-buyer/{{newGuid}}</a>
+            </form>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<form #f="ngForm" (submit)="onSubmit(f)" novalidate style="width: 100%; max-width: 800px; margin: 0 auto; padding: 24px; text-align: center;">
+    <h2>Just dope form</h2>
+    <mat-form-field class="form-row" appearance="fill">
+        <mat-label>From</mat-label>
+        <mat-select name="from" ngModel placeholder="MetaMask addresses">
+            <mat-option *ngFor="let address of accounts" [value]="address">
+                {{address}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-row" appearance="fill">
+        <mat-label>To</mat-label>
+        <input matInput name="to" ngModel placeholder="Add etheruem address">
+    </mat-form-field>
+    <div class="form-row amount-input" fxLayout="row">
+        <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input matInput name="amount" ngModel type="number" min="0" placeholder="How much ether do you want to send">
+        </mat-form-field>
+        <p>ETH</p>
+    </div>
+    <mat-form-field class="form-row" appearance="fill">
+        <mat-label>Gas price</mat-label>
+        <input matInput name="gasPrice" ngModel placeholder="Set the gas price">
+        <mat-hint>
+            <a target="_blank" href="https://kb.myetherwallet.com/gas/what-is-gas-ethereum.html">What is gas?</a>
+        </mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" style="width: 100%; max-width: 450px;">Send</button>
+</form>

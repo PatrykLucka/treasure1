@@ -1,0 +1,61 @@
+.login {
+    height: 100vh;
+    width: 100vw;
+    background: url('../../assets/bg-01.png');
+    background-size: 1000px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.login h2 { 
+    margin: 5px;
+-webkit-animation: fadein .4s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .4s; /* Firefox < 16 */
+ -ms-animation: fadein .4s; /* Internet Explorer */
+  -o-animation: fadein .4s; /* Opera < 12.1 */
+     animation: fadein .4s;
+}
+
+.login form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 15px 100px;
+}
+
+.login .consensys-logo {
+    max-height: 100px;
+    margin-bottom: 50px;
+}
+
+.login mat-form-field, .login button {
+    width: 300px;
+}
+
+.login mat-form-field {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+-webkit-animation: fadein .6s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .6s; /* Firefox < 16 */
+ -ms-animation: fadein .6s; /* Internet Explorer */
+  -o-animation: fadein .6s; /* Opera < 12.1 */
+     animation: fadein .6s;
+}
+
+.login button {
+    background-color: #166BDF;
+    background-image: linear-gradient(to right bottom, #4c93f4, #3e87ee, #307ce8, #2070e2, #0c64db);
+-webkit-animation: fadein .8s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .8s; /* Firefox < 16 */
+ -ms-animation: fadein .8s; /* Internet Explorer */
+  -o-animation: fadein .8s; /* Opera < 12.1 */
+     animation: fadein .8s;
+     margin-bottom: 200px;
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; top: -20px; }
+    to   { opacity: 1; top: 0px; }
+}

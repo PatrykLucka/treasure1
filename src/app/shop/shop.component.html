@@ -1,0 +1,36 @@
+<section class="shop" *ngIf="user">
+    <div class="back">
+        <button mat-button routerLink="/">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+            Back
+        </button>
+    </div>
+    <div class="account">
+        <mat-icon>account_circle</mat-icon>
+        <div>
+            <h3>{{user.name}}</h3>
+            <p class="text-gray">Balance: &nbsp; <strong>{{(user.limit - user.spent) / 1000000000000000000}} Ξ</strong></p>
+        </div>
+    </div>
+    <h1>Shop</h1>
+    <mat-grid-list cols="3" rowHeight="300px" gutterSize="25px" style="width: 1000px; margin: 0 auto;">
+        <mat-grid-tile *ngFor="let item of items" style="background: white;">
+            <div style="display: flex; flex-direction: column; width: 100%; margin-top: 20px;">
+                <div style="width: 100%">
+                    <img [src]="item.imgUrl" alt="" style="margin: 0 auto;">
+                </div>
+                <div style="padding: 10px 24px; margin-top: 40px; background: white;">
+                    <h2>{{item.name}}</h2>
+                    <div class="item-details">
+                        <p>{{item.price}}&nbsp; Ξ</p>
+                        <button mat-raised-button color="primary" (click)="buy(item)">Buy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay {{item.bought ? 'bought' : ''}}">
+                <mat-icon *ngIf="item.bought !== 'error'">check</mat-icon>
+                <mat-icon *ngIf="item.bought === 'error'" class="red">close</mat-icon>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</section>

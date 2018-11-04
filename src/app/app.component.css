@@ -1,0 +1,12 @@
+section {
+    display: flex;
+    height: 100vh;
+}
+
+mat-list-item {
+    background: white;
+}
+mat-list-item span {
+    margin-left: auto;
+    color: #3D5CDC;
+}

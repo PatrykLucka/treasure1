@@ -1,0 +1,15 @@
+<div class="login">
+    <form #f="ngForm" novalidate>
+        <img src="../../assets/consensys-logo.png" class="consensys-logo" alt="">
+        <h2>Welcome,</h2>
+        <h2 class="text-gray">sign in to continue</h2>
+        <div>
+            <mat-form-field style="width: 200px;">
+                <mat-label>ENS name</mat-label>
+                <input matInput name="to" [(ngModel)]="ensPrefix" placeholder="Your ENS name">
+            </mat-form-field>
+            <p style="display: inline-block;">.consensys.eth</p>
+        </div>
+        <button mat-raised-button color="primary" type="submit" (click)="login()">Log in</button>
+    </form>
+</div>

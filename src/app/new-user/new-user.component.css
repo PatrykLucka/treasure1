@@ -1,0 +1,102 @@
+.new-user {
+    height: 100vh;
+    width: 100vw;
+    background: url('../../assets/bg-02.png');
+    background-size: 1000px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.new-user h2 { 
+    margin: 5px;
+-webkit-animation: fadein .4s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .4s; /* Firefox < 16 */
+ -ms-animation: fadein .4s; /* Internet Explorer */
+  -o-animation: fadein .4s; /* Opera < 12.1 */
+     animation: fadein .4s;
+}
+.new-user p { 
+-webkit-animation: fadein .4s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .4s; /* Firefox < 16 */
+ -ms-animation: fadein .4s; /* Internet Explorer */
+  -o-animation: fadein .4s; /* Opera < 12.1 */
+     animation: fadein .4s;
+}
+
+.new-user form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 100px;
+}
+
+.new-user .consensys-logo {
+    max-height: 100px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.new-user label {
+    margin-top: 10px;
+}
+
+.new-user .social-media {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    height: 70px;
+    margin-top: 20px;
+}
+
+.new-user .social-media .img {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    background-size: contain;
+}
+.new-user .social-media .img .overlay {
+    height: 40px;
+    width: 40px;
+}
+.new-user .social-media .img .overlay.unactive {
+    background: rgba(255, 255, 255, 0.7);
+}
+.new-user .social-media .img.img-google { background-image: url('../../assets/Google-G-Logo.svg'); }
+.new-user .social-media .img.img-facebook { background-image: url('../../assets/facebook-logo.png'); }
+.new-user .social-media .img.img-linkedin { background-image: url('../../assets/LinkedIn-logo.png'); }
+
+.new-user mat-form-field, .new-user button {
+    width: 300px;
+}
+
+.new-user .text-gray {
+    margin-bottom: 5vh;
+}
+
+.new-user mat-form-field {
+-webkit-animation: fadein .6s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .6s; /* Firefox < 16 */
+ -ms-animation: fadein .6s; /* Internet Explorer */
+  -o-animation: fadein .6s; /* Opera < 12.1 */
+     animation: fadein .6s;
+}
+
+.new-user button {
+    margin-top: 5vh;
+    background-color: #166BDF;
+    background-image: linear-gradient(to right bottom, #4c93f4, #3e87ee, #307ce8, #2070e2, #0c64db);
+-webkit-animation: fadein .8s; /* Safari, Chrome and Opera > 12.1 */
+-moz-animation: fadein .8s; /* Firefox < 16 */
+ -ms-animation: fadein .8s; /* Internet Explorer */
+  -o-animation: fadein .8s; /* Opera < 12.1 */
+     animation: fadein .8s;
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; top: -20px; }
+    to   { opacity: 1; top: 0px; }
+}

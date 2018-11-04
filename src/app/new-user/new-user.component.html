@@ -1,0 +1,32 @@
+<div class="new-user">
+    <form #f="ngForm" novalidate>
+        <img src="../../assets/consensys-logo.png" class="consensys-logo" alt="">
+        <h2>Welcome,</h2>
+        <h2 class="text-gray">set your account details</h2>
+        <div>
+            <mat-form-field style="width: 200px;">
+                <mat-label>ENS name</mat-label>
+                <input matInput name="to" [(ngModel)]="ensPrefix" placeholder="Your ENS name">
+            </mat-form-field>
+            <p style="display: inline-block;">.consensys.eth</p>
+        </div>
+        <mat-spinner *ngIf="providerLoading" [diameter]="50" style="margin-left: 120px;"></mat-spinner>
+        <label *ngIf="ensPrefix && !providerLoading">Choose data provider</label>
+        <div class="social-media" *ngIf="ensPrefix && !providerLoading">
+            <div class="img img-google" (click)="chooseProvider('google')">
+                <div class="overlay {{ (provider && provider !== 'google') ? 'unactive' : '' }}"></div>
+            </div>
+            <div class="img img-facebook" (click)="chooseProvider('facebook')">
+                <div class="overlay {{ (provider && provider !== 'facebook') ? 'unactive' : '' }}"></div>
+            </div>
+            <div class="img img-linkedin" (click)="chooseProvider('linkedin')">
+                <div class="overlay {{ (provider && provider !== 'linkedin') ? 'unactive' : '' }}"></div>
+            </div>
+        </div>
+        <mat-form-field *ngIf="ensPrefix && !providerLoading">
+            <mat-label>Full name</mat-label>
+            <input matInput name="to" [(ngModel)]="name" placeholder="Enter your name...">
+        </mat-form-field>
+        <button *ngIf="name" mat-raised-button color="primary" type="submit" (click)="setUser()">Continue</button>
+    </form>
+</div>
